@@ -27,15 +27,13 @@ app.get('/', (req, res) => {
     }
 });
 
-connect().then(() => {
-    try {
-        app.listen(port, () => {
-            console.log(`Server connected to http://localhost:${port}`);
-        });
-    } catch (error) {
-        console.error("Cannot connect to the server");
-    }
-}).catch(error => {
-    console.error("Invalid Database Connection");
+connect()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Server connected to http://localhost:${port}`);
+    });
+  })
+  .catch((error) => {
+    console.error('Error during server startup:', error);
     process.exit(1);
-});
+  });
